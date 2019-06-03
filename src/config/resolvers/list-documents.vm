@@ -1,0 +1,25 @@
+// CONFIGURE THE REQUEST MAPPING TEMPLATE
+
+{
+  "version" : "2017-02-28",
+  "operation" : "Scan",
+}
+
+// CONFIGURE THE RESPONSE MAPPING TEMPLATE
+
+#foreach($group in $ctx.identity.claims.get("cognito:groups"))
+  #if($group == "Admin")
+    #set($inCognitoGroup = true)
+  #end
+#end
+#if($inCognitoGroup)
+  $util.toJson($ctx.result.items)
+#else
+  #set($myResults = [])
+  #foreach($item in $ctx.result.items)
+    #if($item.createdBy == $ctx.identity.username)
+      #set($added = $myResults.add($item))
+    #end
+  #end
+  $utils.toJson($myResults)
+#end

@@ -1,0 +1,74 @@
+// CONFIGURE THE REQUEST MAPPING TEMPLATE
+
+#foreach($group in $ctx.identity.claims.get("cognito:groups"))
+  #if($group == "Admin")
+    #set($inCognitoGroup = true)
+  #end
+#end
+#if($inCognitoGroup)
+  {
+    "version": "2017-02-28",
+    "operation": "UpdateItem",
+    "key": {
+      "id": { "S": "${ctx.args.id}" }
+    },
+    "update": {
+      "expression": "SET #documentFile = :file, title = :title, documentType = :documentType, fileType = :fileType, #documentClusters = :clusters, organizations = :organizations, donors = :donors, washTypes = :washTypes, admin0 = :admin0, admin1 = :admin1, admin2 = :admin2, updatedAt = :updatedAt, updatedBy = :updatedBy, #documentStatus = :status",
+      "expressionNames": {
+        "#documentFile": "file",
+        "#documentClusters": "clusters",
+        "#documentStatus": "status"
+      },
+      "expressionValues": {
+        ":file": { "S": "${ctx.args.file}" },
+        ":title": { "S": "${ctx.args.title}" },
+        ":documentType": { "S": "${ctx.args.documentType}" },
+        ":fileType": { "S": "${ctx.args.fileType}" },
+        ":clusters": $util.dynamodb.toDynamoDBJson($ctx.args.clusters),
+        ":organizations": $util.dynamodb.toDynamoDBJson($ctx.args.organizations),
+        ":donors": $util.dynamodb.toDynamoDBJson($ctx.args.donors),
+        ":washTypes": $util.dynamodb.toDynamoDBJson($ctx.args.washTypes),
+        ":admin0": $util.dynamodb.toDynamoDBJson($ctx.args.admin0),
+        ":admin1": $util.dynamodb.toDynamoDBJson($ctx.args.admin1),
+        ":admin2": $util.dynamodb.toDynamoDBJson($ctx.args.admin2),
+        ":updatedAt": { "N": "${ctx.args.updatedAt}" },
+        ":updatedBy": { "S": "${ctx.args.updatedBy}" },
+        ":status": { "S": "${ctx.args.status}" }
+      }
+    }
+  }
+#else
+  {
+    "version": "2017-02-28",
+    "operation": "UpdateItem",
+    "key": {
+      "id": { "S": "${ctx.args.id}" }
+    },
+    "update": {
+      "expression": "SET #documentFile = :file, title = :title, documentType = :documentType, fileType = :fileType, #documentClusters = :clusters, organizations = :organizations, donors = :donors, washTypes = :washTypes, admin0 = :admin0, admin1 = :admin1, admin2 = :admin2, updatedAt = :updatedAt, updatedBy = :updatedBy",
+      "expressionNames": {
+        "#documentFile": "file",
+        "#documentClusters": "clusters"
+      },
+      "expressionValues": {
+        ":file": { "S": "${ctx.args.file}" },
+        ":title": { "S": "${ctx.args.title}" },
+        ":documentType": { "S": "${ctx.args.documentType}" },
+        ":fileType": { "S": "${ctx.args.fileType}" },
+        ":clusters": $util.dynamodb.toDynamoDBJson($ctx.args.clusters),
+        ":organizations": $util.dynamodb.toDynamoDBJson($ctx.args.organizations),
+        ":donors": $util.dynamodb.toDynamoDBJson($ctx.args.donors),
+        ":washTypes": $util.dynamodb.toDynamoDBJson($ctx.args.washTypes),
+        ":admin0": $util.dynamodb.toDynamoDBJson($ctx.args.admin0),
+        ":admin1": $util.dynamodb.toDynamoDBJson($ctx.args.admin1),
+        ":admin2": $util.dynamodb.toDynamoDBJson($ctx.args.admin2),
+        ":updatedAt": { "N": "${ctx.args.updatedAt}" },
+        ":updatedBy": { "S": "${ctx.args.updatedBy}" }
+      }
+    }
+  }
+#end
+
+// CONFIGURE THE RESPONSE MAPPING TEMPLATE
+
+$util.toJson($ctx.result)

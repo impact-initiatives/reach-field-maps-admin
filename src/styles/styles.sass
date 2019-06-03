@@ -1,0 +1,77 @@
+$blue: #3399CC
+$green: #009933
+$red: #E36159
+$turquoise: #009999
+
+$footer-background-color: white
+$footer-padding: 3rem 1.5rem 1.5rem
+$navbar-breakpoint: 426px
+
+$box-padding: 0.75rem
+$modal-card-head-padding: 1rem
+
+@import "../../node_modules/bulma/bulma"
+
+html
+  overflow: auto
+
+// Make a tablet sized container for forms
+.container
+  &.is-tablet
+    max-width: $tablet - (2 * $gap)
+
+// hide scrollbar when not required
+.select
+  select[multiple]
+    overflow: auto
+    option::before
+      content: "\2610"
+      padding-right: 0.5rem
+    option:checked::before
+      content: "\2611"
+
+.select:not(.multiple)
+  select:invalid:not([multiple])
+    color: $grey-light
+
+// Make table narrow on mobile
+.table
+  +mobile
+    td,
+    th
+      padding: 0.25em 0.5em
+
+// Apply special styling to select multiple component
+.box
+  .modal:not(.is-active)
+    display: initial
+    position: absolute
+    z-index: 0
+    opacity: 0
+  .modal:not(.is-active).ua-mobile
+    z-index: 1
+    .modal-card
+      height: 100%
+      margin-left: 0
+      .select.is-multiple
+        height: 100%
+        select
+          height: 100%
+
+// loading bar for service worker notifications
+.progress.is-primary.is-small.is-fixed-top:indeterminate
+  background-color: rgba(255,255,255,0)
+  background-image: linear-gradient(to right, $primary 30%, rgba(255,255,255,0) 30%)
+  border-radius: 0
+  height: 0.25rem
+  position: fixed
+  top: 0
+  z-index: 41
+
+// full-sized tableau maps
+.tableau-map-container
+  height: 100vh
+  width: 100%
+  max-width: 1200px
+  max-height: 900px
+  margin: auto
