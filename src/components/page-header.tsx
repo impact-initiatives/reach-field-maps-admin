@@ -3,7 +3,6 @@ import { Link } from 'gatsby';
 import Auth from '@aws-amplify/auth';
 
 import client from '../utils/aws-appsync-client';
-import awsConfig from '../config/aws/aws-exports';
 import Logo from '../images/wash-icon.svg';
 
 interface Props {
@@ -16,9 +15,7 @@ interface State {
 
 const onLogout = () =>
   Auth.signOut().then(() =>
-    client
-      .clearStore()
-      .then(() => window.location.assign(awsConfig.route53.public)),
+    client.clearStore().then(() => window.location.reload()),
   );
 
 const onClick = (state: State, setState: Function) =>
@@ -55,19 +52,10 @@ const PageHeader = ({ tab }: Props) => {
           </Link>
           <Link
             className={`navbar-item is-tab${
-              tab === '/upload' ? ' is-active' : ''
+              tab === '/admin/' ? ' is-active' : ''
             }`}
-            to="/upload"
-            aria-label="Upload files"
-          >
-            Upload
-          </Link>
-          <Link
-            className={`navbar-item is-tab${
-              tab === '/admin' ? ' is-active' : ''
-            }`}
-            to="/admin"
-            aria-label="Admin console"
+            to="/admin/"
+            aria-label="Edit maps"
           >
             Admin
           </Link>

@@ -3,7 +3,7 @@ import Storage from '@aws-amplify/storage';
 import AWSAppSyncClient, { buildSync, AUTH_TYPE } from 'aws-appsync';
 
 import awsExports from '../config/aws/aws-exports';
-import { listDocuments, listDocumentsDelta } from '../config/graphql/queries';
+import { listMaps, listMapsDelta } from '../config/graphql/queries';
 
 if (typeof window === 'undefined') global.fetch = import('node-fetch');
 
@@ -23,8 +23,8 @@ const client = new AWSAppSyncClient({
 const clientSync = () =>
   client.sync(
     buildSync('Document', {
-      baseQuery: { query: listDocuments },
-      deltaQuery: { query: listDocumentsDelta },
+      baseQuery: { query: listMaps },
+      deltaQuery: { query: listMapsDelta },
     }),
   );
 
@@ -33,7 +33,7 @@ client.hydrated().then(() =>
     .then(() => {
       const { data } = client.store.getCache().data;
       if (Object.entries(data).length === 0)
-        client.query({ query: listDocuments }).then(() => clientSync());
+        client.query({ query: listMaps }).then(() => clientSync());
       else clientSync();
     })
     .catch(() => {}),

@@ -23,7 +23,9 @@ yarn add \
   react-apollo \
   react-dom \
   react-helmet \
-  react-icons
+  react-icons \
+  topojson-server \
+  topojson-simplify
 
 yarn add --dev \
   @babel/core \

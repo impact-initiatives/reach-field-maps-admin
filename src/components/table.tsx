@@ -22,8 +22,7 @@ const Table = ({ data }: Props) => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Document Type</th>
-              <th>File Type</th>
+              <th>Map Type</th>
               <th>Created</th>
               <th>Updated</th>
             </tr>
@@ -33,11 +32,10 @@ const Table = ({ data }: Props) => {
               <tr key={d.id}>
                 <td>
                   <Link to={`/admin/edit/#${d.id}`} aria-label={d.title}>
-                    {d.title}
+                    {d.titleShort}
                   </Link>
                 </td>
-                <td>{d.documentType.label}</td>
-                <td>{d.fileType.label}</td>
+                <td>{d.mapType}</td>
                 <td>
                   {new Date(d.createdAt * 1000).toLocaleString('en-GB', {
                     year: 'numeric',

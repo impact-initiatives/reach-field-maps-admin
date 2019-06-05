@@ -1,49 +1,37 @@
 import gql from 'graphql-tag';
 
-export const listDocuments = gql`
-  query listDocuments {
-    listDocuments {
+export const listMaps = gql`
+  query listMaps {
+    listMaps {
       id
-      file
-      title
-      documentType
-      fileType
-      clusters
-      organizations
-      donors
-      washTypes
-      admin0
-      admin1
-      admin2
+      titleLong
+      titleShort
+      userGroups
+      mapType
+      netlifyHook
+      subDomain
       createdAt
       createdBy
       updatedAt
       updatedBy
-      status
     }
   }
 `;
 
-export const listDocumentsDelta = gql`
-  query listDocumentsDelta($lastSync: AWSTimestamp!) {
-    listDocumentsDelta(lastSync: $lastSync) {
+export const listMapsDelta = gql`
+  query listMapsDelta($lastSync: AWSTimestamp!) {
+    listMapsDelta(lastSync: $lastSync) {
       id
-      file
-      title
-      documentType
-      fileType
-      clusters
-      organizations
-      donors
-      washTypes
-      admin0
-      admin1
-      admin2
+      titleLong
+      titleShort
+      userGroups
+      mapType
+      netlifyHook
+      subDomain
       createdAt
       createdBy
       updatedAt
       updatedBy
-      status
     }
   }
 `;

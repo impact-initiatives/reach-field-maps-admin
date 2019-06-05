@@ -5,13 +5,12 @@ import SEO from '../../components/seo';
 import AdminForm from '../../components/admin-form';
 import PageHeader from '../../components/page-header';
 import PageFooter from '../../components/page-footer';
-import { listDocuments } from '../../config/graphql/queries';
-import applyLabels from '../../utils/apply-labels';
+import { listMaps } from '../../config/graphql/queries';
 
 interface Props {
   loading: boolean;
   data: {
-    listDocuments: Data[];
+    listMaps: Data[];
   };
 }
 
@@ -20,13 +19,13 @@ const sort = (a: Data, b: Data): number => b.createdAt - a.createdAt;
 const AdminPage = () => (
   <div>
     <SEO title="Admin" />
-    <PageHeader tab="/admin" />
+    <PageHeader tab="/admin/" />
     <section className="section">
       <div className="container">
-        <Query query={listDocuments}>
-          {({ loading, data: { listDocuments } }: Props) => (
+        <Query query={listMaps}>
+          {({ loading, data: { listMaps } }: Props) => (
             <AdminForm
-              data={listDocuments ? applyLabels(listDocuments.sort(sort)) : []}
+              data={listMaps ? listMaps.sort(sort) : []}
               loading={loading}
             />
           )}

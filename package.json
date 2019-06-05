@@ -18,6 +18,9 @@
   "dependencies": {
     "@aws-amplify/auth": "^1.2.24",
     "@aws-amplify/storage": "^1.0.30",
+    "@turf/meta": "^6.0.2",
+    "@turf/simplify": "^5.1.5",
+    "@turf/truncate": "^6.0.1",
     "apollo-client": "^2.6.0",
     "aws-appsync": "^1.8.0",
     "aws-appsync-react": "^1.2.8",
@@ -41,13 +44,18 @@
     "react-apollo": "^2.5.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "react-icons": "^3.7.0"
+    "react-icons": "^3.7.0",
+    "topojson-server": "^3.0.0",
+    "topojson-simplify": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@types/geojson": "^7946.0.7",
     "@types/graphql": "^14.2.0",
     "@types/node-fetch": "^2.3.4",
     "@types/react-helmet": "^5.0.8",
+    "@types/topojson-server": "^3.0.0",
+    "@types/topojson-simplify": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "babel-eslint": "^10.0.1",

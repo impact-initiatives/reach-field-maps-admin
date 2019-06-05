@@ -1,23 +1,23 @@
 const awsExports: AwsExports = {
   Auth: {
-    identityPoolId: 'eu-west-1:67b93f41-7b22-4d15-8d46-7c63867751eb',
+    identityPoolId: 'eu-west-1:c9fab6e0-0bbc-4605-8039-1b99010980bd',
     region: 'eu-west-1',
-    userPoolId: 'eu-west-1_FQgJvYQGw',
-    userPoolWebClientId: '6b18io3100a8ggtau51ckqij1f',
+    userPoolId: 'eu-west-1_i7jaE6cCR',
+    userPoolWebClientId: '74g7bkn4ulqg82nl6du93r5aa0',
   },
   AWSS3: {
-    bucket: 'wash-im.reach-info.org',
+    bucket: 'field-maps.reach-info.org',
     region: 'eu-west-1',
     level: 'public',
   },
   aws_appsync_graphqlEndpoint:
-    'https://4wftryxpxbhahejnrqaimcngau.appsync-api.eu-west-1.amazonaws.com/graphql',
+    'https://3ezfm2zzxzfcdjovl7xu4wc3mi.appsync-api.eu-west-1.amazonaws.com/graphql',
   aws_appsync_region: 'eu-west-1',
   aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS',
   route53: {
-    admin: 'https://wash-im-admin.reach-info.org',
-    files: 'https://wash-im-files.reach-info.org/files/',
-    public: 'https://wash-im.reach-info.org',
+    admin: 'https://field-maps-admin.reach-info.org',
+    files: '',
+    public: 'https://field-maps.reach-info.org',
   },
 };
 
