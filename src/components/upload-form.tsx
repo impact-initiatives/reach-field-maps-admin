@@ -4,8 +4,10 @@ import { navigate } from 'gatsby';
 import handleSubmit from '../utils/upload-functions';
 import UploadFormFile from './upload-form-file';
 
-const name = { label: 'Name', value: 'n' };
+const name = { parent: '', name: 'name', label: 'Name', value: 'n' };
 const settlement = {
+  parent: 'settlements',
+  name: 'settlementSize',
   label: 'Settlement Size',
   value: 's',
   options: [
@@ -15,37 +17,43 @@ const settlement = {
     { label: 'Admin 3 Capital Cities', value: 4 },
     { label: 'Admin 4 Capital Cities', value: 5 },
     { label: 'Other Settlements', value: 6 },
-    { label: 'N/A', value: null },
+    { label: 'N/A', value: 0 },
   ],
 };
 const camp = {
+  parent: 'camps',
+  name: 'campType',
   label: 'Type',
   value: 'c',
   options: [
     { label: 'Refugee Camp', value: 1 },
     { label: 'IDP Protection of Civilian Site', value: 2 },
     { label: 'IDP Spontaneous Settlement', value: 3 },
-    { label: 'N/A', value: null },
+    { label: 'N/A', value: 0 },
   ],
 };
 const road = {
+  parent: 'roads',
+  name: 'roadType',
   label: 'Type',
   value: 'r',
   options: [
     { label: 'Primary', value: 1 },
     { label: 'Secondary', value: 2 },
     { label: 'Tertiary', value: 3 },
-    { label: 'N/A', value: null },
+    { label: 'N/A', value: 0 },
   ],
 };
 const river = {
+  parent: 'rivers',
+  name: 'riverType',
   label: 'Type',
   value: 'w',
   options: [
     { label: 'Primary', value: 1 },
     { label: 'Secondary', value: 2 },
     { label: 'Tertiary', value: 3 },
-    { label: 'N/A', value: null },
+    { label: 'N/A', value: 0 },
   ],
 };
 

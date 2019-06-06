@@ -1,6 +1,9 @@
 yarn add \
   @aws-amplify/auth \
   @aws-amplify/storage \
+  @turf/meta \
+  @turf/simplify \
+  @turf/truncate \
   apollo-client \
   aws-appsync \
   aws-appsync-react \
@@ -15,6 +18,7 @@ yarn add \
   gatsby-plugin-sass \
   gatsby-plugin-sharp \
   gatsby-plugin-typescript \
+  gatsby-source-filesystem \
   gatsby-transformer-remark \
   gatsby-transformer-sharp \
   graphql \
@@ -23,9 +27,7 @@ yarn add \
   react-apollo \
   react-dom \
   react-helmet \
-  react-icons \
-  topojson-server \
-  topojson-simplify
+  react-icons
 
 yarn add --dev \
   @babel/core \

@@ -32,10 +32,10 @@ const onChange = (
   }));
 };
 
-const SelectOne = ({ field, options, optionValues }: Props) => {
+const SelectOne = ({ parent, field, options, optionValues }: Props) => {
   const [state, setState] = useState({ sourceField: '' });
   return (
-    <div className="field" key={field.value}>
+    <div className="field">
       <label className="label" htmlFor={field.value}>
         <span>{field.label}</span>
       </label>
@@ -48,6 +48,7 @@ const SelectOne = ({ field, options, optionValues }: Props) => {
             id={field.value}
             defaultValue=""
             onChange={e => onChange(e, setState)}
+            data-parent={parent}
           >
             <option value="" disabled>
               Select one
@@ -75,6 +76,8 @@ const SelectOne = ({ field, options, optionValues }: Props) => {
                 .map((opt, index) => (
                   <SelectOneOption
                     key={index}
+                    parent={parent}
+                    parentProp={field.value}
                     srcOption={opt}
                     destOption={field.options}
                   />

@@ -5,7 +5,7 @@ interface Props {
   destOption: string[];
 }
 
-const SelectOne = ({ srcOption, destOption }: Props) => {
+const SelectOne = ({ parent, parentProp, srcOption, destOption }: Props) => {
   const [state, setState] = useState({ sourceField: '' });
   return (
     <tr>
@@ -18,6 +18,8 @@ const SelectOne = ({ srcOption, destOption }: Props) => {
             name={srcOption}
             id={srcOption}
             defaultValue=""
+            data-parent={parent}
+            data-parent-prop={parentProp}
           >
             <option value="" disabled>
               Select one

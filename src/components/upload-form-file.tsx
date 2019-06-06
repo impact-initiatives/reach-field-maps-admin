@@ -6,7 +6,7 @@ import SelectOne from './upload-form-select';
 
 type FieldOptions = {
   label: string;
-  value: string | number | null;
+  value: string | number;
 };
 
 interface Fields {
@@ -103,6 +103,7 @@ const UploadFormFile = ({ name, label, fields }: Props) => {
         ? fields.map(field => (
             <SelectOne
               key={field.value}
+              parent={name}
               field={field}
               options={state.options}
               optionValues={state.optionValues}
