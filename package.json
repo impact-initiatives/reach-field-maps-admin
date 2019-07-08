@@ -24,7 +24,7 @@
     "aws-appsync": "^1.8.1",
     "aws-appsync-react": "^1.2.9",
     "bulma": "^0.7.5",
-    "gatsby": "^2.13.4",
+    "gatsby": "^2.13.9",
     "gatsby-image": "^2.2.4",
     "gatsby-plugin-manifest": "^2.2.1",
     "gatsby-plugin-netlify": "^2.1.0",
@@ -32,10 +32,10 @@
     "gatsby-plugin-react-helmet": "^3.1.0",
     "gatsby-plugin-react-svg": "^2.1.1",
     "gatsby-plugin-sass": "^2.1.0",
-    "gatsby-plugin-sharp": "^2.2.2",
+    "gatsby-plugin-sharp": "^2.2.3",
     "gatsby-plugin-typescript": "^2.1.0",
     "gatsby-source-filesystem": "^2.1.2",
-    "gatsby-transformer-remark": "^2.6.0",
+    "gatsby-transformer-remark": "^2.6.1",
     "gatsby-transformer-sharp": "^2.2.1",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",
@@ -51,7 +51,7 @@
     "node-fetch": "^2.6.0",
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
-    "webpack": "^4.35.2"
+    "webpack": "^4.35.3"
   },
   "keywords": [
     "gatsby"
