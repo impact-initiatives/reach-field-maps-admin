@@ -3,9 +3,9 @@ import Auth from '@aws-amplify/auth';
 import { navigate } from 'gatsby';
 import { ApolloProvider } from 'react-apollo';
 import { Rehydrated } from 'aws-appsync-react';
-import './src/styles/styles.sass';
 
 import client from './src/utils/aws-appsync-client';
+import './src/styles/styles.sass';
 
 const ELEMENT_ID = 'gatsby-browser-service-worker-notification';
 
@@ -21,7 +21,7 @@ const addProgressBar = () => {
 const removeProgressBar = () => document.getElementById(ELEMENT_ID).remove();
 
 if (
-  window.location.protocol === 'https:' &&
+  process.env.NODE_ENV === 'production' &&
   !navigator.serviceWorker.controller
 ) {
   addProgressBar();

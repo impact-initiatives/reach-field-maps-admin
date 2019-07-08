@@ -1,3 +1,5 @@
+import Auth from '@aws-amplify/auth';
+import Storage from '@aws-amplify/storage';
 import simplify from '@turf/simplify';
 import truncate from '@turf/truncate';
 
@@ -9,23 +11,37 @@ interface Values {
   [key: string]: any;
 }
 
+interface ProgressCallback {
+  loaded: number;
+  total: number;
+}
+
+const storeGeoJson = (geoJson, name) => {
+  Storage.put(`${name}.json`, JSON.stringify(geoJson), {
+    contentType: 'application/json',
+    customPrefix: { public: `files/${window.location.hash.substring(1)}/` },
+    progressCallback({ loaded, total }: ProgressCallback) {
+      console.log(`${(loaded / total) * 100}%`);
+    },
+  });
+};
+
 const simplifyGeoJson = geoJson => {
-  const truncatedGeoJson = truncate(geoJson, {
+  const simplifiedGeoJson = simplify(geoJson, {
+    tolerance: 0.00001,
+    highQuality: true,
+  });
+  const truncatedGeoJson = truncate(simplifiedGeoJson, {
     precision: 5,
     coordinates: 2,
-    mutate: true,
   });
-  const simplifiedGeoJson = simplify(truncatedGeoJson, {
-    tolerance: 1,
-    highQuality: true,
-    mutate: true,
-  });
-  return simplifiedGeoJson;
+  return truncatedGeoJson;
 };
 
 const transformGeoJson = (geoJson, transform, transformProps) => {
   if (geoJson.type === 'FeatureCollection') {
-    const features = geoJson.features.map(feature => {
+    const modifiedGeoJson = { type: geoJson.type, features: geoJson.features };
+    const features = modifiedGeoJson.features.map(feature => {
       const properties = Object.fromEntries(
         Object.entries(feature.properties)
           .map(([key, value]) => {
@@ -42,8 +58,8 @@ const transformGeoJson = (geoJson, transform, transformProps) => {
       feature.properties = properties;
       return feature;
     });
-    geoJson.features = features;
-    return geoJson;
+    modifiedGeoJson.features = features;
+    return modifiedGeoJson;
   }
   return geoJson;
 };
@@ -73,13 +89,14 @@ const handleSubmit = (
     if (name && files && files[0]) {
       promises.push(
         getFileJson(files[0]).then(geoJson => {
-          const simplifiedGeoJson = simplifyGeoJson(geoJson);
           const transformedGeoJson = transformGeoJson(
-            simplifiedGeoJson,
+            geoJson,
             transform[name],
             transformProps[name],
           );
-          values[name] = transformedGeoJson;
+          const simplifiedGeoJson = simplifyGeoJson(transformedGeoJson);
+          storeGeoJson(simplifiedGeoJson, name);
+          values[name] = simplifiedGeoJson;
         }),
       );
       transform[name] = {};

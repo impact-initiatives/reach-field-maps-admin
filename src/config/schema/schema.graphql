@@ -18,6 +18,13 @@ enum MapType {
 
 enum UserGroup {
   REACH_SSD
+  REACH_KEN
+  REACH_UGA
+  REACH_ETH
+  REACH_SDN
+  REACH_COD
+  REACH_CAF
+  REACH_NGA
 }
 
 type Query {

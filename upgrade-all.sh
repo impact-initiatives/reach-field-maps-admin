@@ -1,7 +1,6 @@
 yarn add \
   @aws-amplify/auth \
   @aws-amplify/storage \
-  @turf/meta \
   @turf/simplify \
   @turf/truncate \
   apollo-client \
@@ -31,21 +30,8 @@ yarn add \
 
 yarn add --dev \
   @babel/core \
-  @types/graphql \
-  @types/node-fetch \
-  @types/react-helmet \
-  @typescript-eslint/eslint-plugin \
-  @typescript-eslint/parser \
-  babel-eslint \
   eslint \
-  eslint-config-react-app \
-  eslint-plugin-flowtype@^2.x \
-  eslint-plugin-import \
-  eslint-plugin-jsx-a11y \
-  eslint-plugin-react \
-  eslint-plugin-react-hooks \
   node-fetch \
   node-sass \
   prettier \
-  typescript \
   webpack

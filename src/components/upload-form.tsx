@@ -5,6 +5,7 @@ import handleSubmit from '../utils/upload-functions';
 import UploadFormFile from './upload-form-file';
 
 const name = { parent: '', name: 'name', label: 'Name', value: 'n' };
+
 const settlement = {
   parent: 'settlements',
   name: 'settlementSize',
@@ -20,6 +21,21 @@ const settlement = {
     { label: 'N/A', value: 0 },
   ],
 };
+
+const admin1Pcode = {
+  parent: '',
+  name: 'admin1',
+  label: 'Admin 1',
+  value: 'a',
+};
+
+const admin2Pcode = {
+  parent: '',
+  name: 'admin2',
+  label: 'Admin 2',
+  value: 'b',
+};
+
 const camp = {
   parent: 'camps',
   name: 'campType',
@@ -32,6 +48,7 @@ const camp = {
     { label: 'N/A', value: 0 },
   ],
 };
+
 const road = {
   parent: 'roads',
   name: 'roadType',
@@ -44,6 +61,7 @@ const road = {
     { label: 'N/A', value: 0 },
   ],
 };
+
 const river = {
   parent: 'rivers',
   name: 'riverType',
@@ -66,7 +84,7 @@ const UploadForm = () => {
       <UploadFormFile
         name="settlements"
         label="Settlements"
-        fields={[name, settlement]}
+        fields={[name, admin1Pcode, admin2Pcode, settlement]}
       />
       <UploadFormFile name="camps" label="Camps" fields={[name, camp]} />
       <hr />
@@ -83,7 +101,7 @@ const UploadForm = () => {
       <UploadFormFile name="admin0" label="Admin 0" fields={[name]} />
       <UploadFormFile name="admin1" label="Admin 1" fields={[name]} />
       <UploadFormFile name="admin2" label="Admin 2" fields={[name]} />
-      <UploadFormFile name="lakes" label="Lakes" fields={[]} />
+      <UploadFormFile name="lakes" label="Lakes" fields={[]} buffer={true} />
       <UploadFormFile name="marshlands" label="Marshlands" fields={[]} />
       <UploadFormFile
         name="parks"

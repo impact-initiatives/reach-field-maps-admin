@@ -19,6 +19,7 @@ interface Props {
   name: string;
   label: string;
   fields: Fields[];
+  buffer?: boolean;
 }
 
 interface State {
@@ -67,7 +68,7 @@ const onChange = (
   }
 };
 
-const UploadFormFile = ({ name, label, fields }: Props) => {
+const UploadFormFile = ({ name, label, fields, buffer }: Props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const uploadDiv = useRef<HTMLDivElement>(null);
   const [state, setState] = useState({ options: [], optionValues: {} });
@@ -84,6 +85,7 @@ const UploadFormFile = ({ name, label, fields }: Props) => {
               className="file-input"
               type="file"
               name={name}
+              data-buffer={buffer}
               onChange={e => onChange(e, uploadDiv.current, setState)}
             />
             <span className="file-cta">
